@@ -1,0 +1,14 @@
+# Calculadora IMC
+
+Aplicativo Flutter desenvolvido utilizando StatefulWidget.
+
+## Funcionalidades
+- Entrada de peso
+- Entrada de altura
+- Cálculo de IMC
+- Classificação automática
+
+## Como executar
+flutter pub get
+flutter run
+
