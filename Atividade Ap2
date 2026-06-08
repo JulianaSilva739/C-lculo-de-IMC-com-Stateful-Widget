@@ -1,14 +1,105 @@
-# Calculadora IMC
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora IMC</title>
 
-Aplicativo Flutter desenvolvido utilizando StatefulWidget.
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
 
-## Funcionalidades
-- Entrada de peso
-- Entrada de altura
-- Cálculo de IMC
-- Classificação automática
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+    width:300px;
+}
 
-## Como executar
-flutter pub get
-flutter run
+h2{
+    text-align:center;
+}
 
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#2196F3;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1976D2;
+}
+
+#resultado{
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Calculadora IMC</h2>
+
+    <input type="number" id="peso" placeholder="Peso (kg)">
+    <input type="number" id="altura" placeholder="Altura (cm)">
+
+    <button onclick="calcularIMC()">Calcular IMC</button>
+
+    <div id="resultado"></div>
+</div>
+
+<script>
+function calcularIMC(){
+
+    let peso = parseFloat(document.getElementById("peso").value);
+    let altura = parseFloat(document.getElementById("altura").value);
+
+    if(!peso || !altura || peso <= 0 || altura <= 0){
+        document.getElementById("resultado").innerHTML =
+        "Digite valores válidos.";
+        return;
+    }
+
+    altura = altura / 100;
+
+    let imc = peso / (altura * altura);
+
+    let classificacao = "";
+
+    if(imc < 18.5){
+        classificacao = "Abaixo do peso";
+    }else if(imc < 25){
+        classificacao = "Peso normal";
+    }else if(imc < 30){
+        classificacao = "Sobrepeso";
+    }else{
+        classificacao = "Obesidade";
+    }
+
+    document.getElementById("resultado").innerHTML =
+    `IMC: ${imc.toFixed(1)}<br>${classificacao}`;
+}
+</script>
+
+</body>
+</html>
